@@ -1,79 +1,46 @@
 # RAG-model
-README for QA Application
+
+
+Explanation of the QA Application Components
 Overview
-This application provides a Question Answering (QA) system using a language model and a document retrieval system. Users can input queries through a graphical user interface (GUI), and the system will return answers along with the relevant source documents.
+The QA application leverages advanced language processing techniques to provide answers to user queries by retrieving relevant information from a document database. The key components of this application are the Retrieval-Augmented Generation (RAG) model and the embedding techniques used to process and retrieve documents.
 
-Features
-Graphical User Interface (GUI): Built with Tkinter, allowing users to input queries and view results.
-Model Integration: Uses HuggingFace embeddings and an Ollama language model for QA.
-Document Retrieval: Retrieves relevant documents from a Chroma vector store.
-Multithreading: Ensures the UI remains responsive by processing queries in a separate thread.
-Customizable: Environment variables allow for easy customization of the model, embeddings, and other parameters.
-Installation
-Clone the repository:
+Retrieval-Augmented Generation (RAG) Model
+The RAG model is a powerful approach that combines retrieval-based and generation-based methods for question answering:
 
-sh
-Copy code
-git clone https://github.com/yourusername/qa-app.git
-cd qa-app
-Install dependencies:
+Retrieval-Based Approach:
 
-sh
-Copy code
-pip install -r requirements.txt
-Set up environment variables:
-Create a .env file in the project directory with the following content (modify as needed):
+Document Retrieval: When a query is submitted, the system first retrieves relevant documents from a pre-processed and indexed database. This ensures that the answer generation process has access to the most pertinent information.
+Chroma Vector Store: The application uses Chroma, a vector store that efficiently indexes and retrieves documents based on their embeddings. This allows for quick and accurate retrieval of relevant document chunks.
+Generation-Based Approach:
 
-sh
-Copy code
-MODEL=tinyllama:latest
-EMBEDDINGS_MODEL_NAME=all-MiniLM-L6-v2
-PERSIST_DIRECTORY=db
-TARGET_SOURCE_CHUNKS=4
-SOURCE_DIRECTORY=source_documents
-Usage
-Running the QA Application
-Start the QA application:
+Language Model (Ollama): After retrieving the relevant documents, the system uses a language model to generate a coherent and contextually appropriate answer. In this application, the Ollama model is used for this purpose. It synthesizes information from the retrieved documents to generate a concise answer.
+Embeddings
+Embeddings are a crucial part of how the application processes and understands both the query and the documents:
 
-sh
-Copy code
-python qa_app.py
-Enter your query in the text entry box and click "Submit".
+HuggingFace Embeddings:
 
-View the answer and source documents in the respective text areas.
+Model: The application uses embeddings from the HuggingFace library, specifically the model "all-MiniLM-L6-v2". This model converts text into high-dimensional vectors that capture the semantic meaning of the text.
+Usage: These embeddings are used to represent both the query and the documents in a way that makes it easy to compare and find similarities. When a query is submitted, it is converted into an embedding, which is then compared against the embeddings of document chunks stored in the Chroma vector store.
+Document Processing and Storage:
 
-Ingesting Documents
-To populate the document database for retrieval, run the ingestion script:
+Ingestion Script: The script ingest_documents.py is responsible for processing documents. It loads documents from a specified directory, splits them into manageable chunks, and converts these chunks into embeddings.
+Text Splitter: To ensure that the documents are in the right format for processing, the text is split into chunks using the RecursiveCharacterTextSplitter. This helps manage long documents by breaking them down into smaller, semantically meaningful pieces.
+Storage: These chunks and their corresponding embeddings are stored in the Chroma vector store, which allows for efficient retrieval during the query process.
+Process Flow
+Initialization:
 
-Prepare your documents: Place your documents in the source_documents directory. Supported formats are PDF, DOC, and DOCX.
-Run the ingestion script:
-sh
-Copy code
-python ingest_documents.py
-This will process the documents, split them into chunks, and store their embeddings in the Chroma vector store.
+The application initializes the embeddings and loads the pre-processed document embeddings into the Chroma vector store.
+It sets up the Tkinter-based GUI for user interaction.
+Query Submission:
 
-Code Explanation
-qa_app.py
-This is the main file for the QA application.
+Users enter their query into the GUI and submit it.
+The query is converted into an embedding.
+Document Retrieval:
 
-Environment Variables: Loads configuration settings from environment variables.
-QAApp Class: Manages the GUI and the QA system.
-Widgets: Sets up the Tkinter widgets for user interaction.
-Model Initialization: Initializes the embeddings, retriever, and QA chain.
-Submit Query: Handles query submission, runs the QA process in a separate thread, and updates the UI with the results.
-ingest_documents.py
-This script processes and ingests documents into the Chroma vector store.
+The query embedding is used to search the Chroma vector store for the most relevant document chunks.
+The retrieved document chunks are passed to the language model.
+Answer Generation:
 
-Load and Process Documents: Loads documents from the source_documents directory, splits them into chunks, and processes them for storage.
-Vector Store Management: Checks if a vector store already exists and either appends new documents or creates a new vector store.
-Constants
-constants.py
-
-Contains settings and configurations for the Chroma vector store.
-
-Environment Variables
-MODEL: Specifies the language model to use.
-EMBEDDINGS_MODEL_NAME: Name of the embeddings model.
-PERSIST_DIRECTORY: Directory to store the Chroma vector store.
-TARGET_SOURCE_CHUNKS: Number of source document chunks to retrieve.
-SOURCE_DIRECTORY: Directory containing the source documents to be ingested.
+The language model (Ollama) uses the context provided by the retrieved document chunks to generate a coherent answer.
+The answer is displayed in the GUI along with the relevant sources, if not hidden by the user.
