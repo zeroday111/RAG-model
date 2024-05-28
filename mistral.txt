@@ -43,7 +43,7 @@ Creating embeddings. May take some minutes...
 Ingestion complete! You can now run privateGPT.py to query your documents
                                                                                                                                                                 
 (vy) ┌──(kali㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
-└─$ python privateGPT.py
+└─$ python app.py
 
 Enter a query: what is all aout
 
