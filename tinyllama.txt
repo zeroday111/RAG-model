@@ -1,4 +1,4 @@
-(vy) ┌──(vyanky㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
+(vy) ┌──(kali㉿kali)-[~/Desktop/chat-with-docs]
 └─$ ollama pull tinyllama
 pulling manifest 
 pulling 2af3b81862c6... 100% ▕███████████████████████████████████████████▏ 637 MB                         
@@ -11,8 +11,8 @@ writing manifest
 removing any unused layers 
 success 
                                                                                                            
-(vy) ┌──(vyanky㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
-└─$ MODEL=tinyllama:latest python privateGPT.py
+(vy) ┌──(kali㉿kali)-[~/Desktop/chat-with-docs]
+└─$ MODEL=tinyllama:latest python app.py
 
 Enter a query: what are the types of otion trading
 The types of OTC (over-the-counter) trading mentioned in the context are:
