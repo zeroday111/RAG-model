@@ -1,7 +1,7 @@
-┌──(vyanky㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
+┌──(kali㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
 └─$ conda activate vy
                                                                                                                                                               
-(vy) ┌──(vyanky㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
+(vy) ┌──(kali㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
 └─$ ollama pull mistral
 pulling manifest 
 pulling e8a35b5937a5... 100% ▕██████████████████████████████████████████████████████████████████████████████████████████████▏ 4.1 GB                         
@@ -14,10 +14,10 @@ writing manifest
 removing any unused layers 
 success 
                                                                                                                                                               
-(vy) ┌──(vyanky㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
+(vy) ┌──(kali㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
 └─$ mkdir source_documents
                                                                                                                                                                 
-(vy) ┌──(vyanky㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
+(vy) ┌──(kali㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
 └─$ python ingest.py 
 .gitattributes: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 1.23k/1.23k [00:00<00:00, 9.20MB/s]
 1_Pooling/config.json: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████| 190/190 [00:00<00:00, 699kB/s]
@@ -42,7 +42,7 @@ Split into 1022 chunks of text (max. 500 tokens each)
 Creating embeddings. May take some minutes...
 Ingestion complete! You can now run privateGPT.py to query your documents
                                                                                                                                                                 
-(vy) ┌──(vyanky㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
+(vy) ┌──(kali㉿kali)-[~/Desktop/Ollama-main/Ollama-main/2-ollama-privateGPT-chat-with-docs]
 └─$ python privateGPT.py
 
 Enter a query: what is all aout
